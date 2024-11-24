@@ -1,0 +1,159 @@
+# Nama : Setyo Niti Wicaksono
+# NIM : A11.2022.14746
+
+hitung Entropy total:
+Total data = 14 kasus
+Play = 8 kasus
+Don't Play = 6 kasus
+
+Entropy(S) = -P(yes)log₂P(yes) - P(no)log₂P(no)
+= -(8/14)log₂(8/14) - (6/14)log₂(6/14)
+= 0.985 bits
+
+hitung Entropy dan Gain untuk setiap atribut:
+
+ENTROPY TOTAL (S)
+Total kasus = 14
+Play (P) = 8 kasus
+Don't Play (N) = 6 kasus
+
+Entropy(S) = -P(yes)log₂P(yes) - P(no)log₂P(no)
+= -(8/14)log₂(8/14) - (6/14)log₂(6/14)
+= -(0.571 × log₂0.571) - (0.429 × log₂0.429)
+= -(0.571 × -0.807) - (0.429 × -1.222)
+= 0.461 + 0.524
+= 0.985 bits
+
+GAIN UNTUK ATRIBUT OUTLOOK
+
+A. Entropy untuk setiap nilai Outlook:
+Sunny (Total=5):
+
+Play = 1
+Don't Play = 4
+Entropy(Sunny) = -(1/5)log₂(1/5) - (4/5)log₂(4/5)
+= -(0.2 × log₂0.2) - (0.8 × log₂0.8)
+= -(0.2 × -2.322) - (0.8 × -0.322)
+= 0.464 + 0.258
+= 0.722
+
+Cloudy (Total=4):
+
+Play = 4
+Don't Play = 0
+Entropy(Cloudy) = 0 (karena semua kasus sama yaitu Play)
+
+Rainy (Total=5):
+
+Play = 3
+Don't Play = 2
+Entropy(Rainy) = -(3/5)log₂(3/5) - (2/5)log₂(2/5)
+= -(0.6 × log₂0.6) - (0.4 × log₂0.4)
+= -(0.6 × -0.737) - (0.4 × -1.322)
+= 0.442 + 0.529
+= 0.971
+
+Gain(Outlook) = Entropy(S) - ∑((|Sv|/|S|) × Entropy(Sv))
+= 0.985 - (5/14 × 0.722 + 4/14 × 0 + 5/14 × 0.971)
+= 0.985 - (0.258 + 0 + 0.347)
+= 0.985 - 0.605
+= 0.246
+
+GAIN UNTUK ATRIBUT TEMPERATURE
+
+A. Entropy untuk setiap nilai Temperature:
+Hot (Total=4):
+
+Play = 2
+Don't Play = 2
+Entropy(Hot) = -(2/4)log₂(2/4) - (2/4)log₂(2/4)
+= -(0.5 × log₂0.5) - (0.5 × log₂0.5)
+= 1.000
+
+Mild (Total=6):
+
+Play = 4
+Don't Play = 2
+Entropy(Mild) = -(4/6)log₂(4/6) - (2/6)log₂(2/6)
+= -(0.667 × log₂0.667) - (0.333 × log₂0.333)
+= 0.918
+
+Cool (Total=4):
+
+Play = 3
+Don't Play = 1
+Entropy(Cool) = -(3/4)log₂(3/4) - (1/4)log₂(1/4)
+= -(0.75 × log₂0.75) - (0.25 × log₂0.25)
+= 0.811
+
+Gain(Temperature) = 0.985 - (4/14 × 1.000 + 6/14 × 0.918 + 4/14 × 0.811)
+= 0.985 - (0.286 + 0.394 + 0.232)
+= 0.985 - 0.912
+= 0.073
+
+GAIN UNTUK ATRIBUT HUMIDITY
+
+A. Entropy untuk setiap nilai Humidity:
+High (Total=7):
+
+Play = 3
+Don't Play = 4
+Entropy(High) = -(3/7)log₂(3/7) - (4/7)log₂(4/7)
+= 0.985
+
+Normal (Total=7):
+
+Play = 5
+Don't Play = 2
+Entropy(Normal) = -(5/7)log₂(5/7) - (2/7)log₂(2/7)
+= 0.863
+
+Gain(Humidity) = 0.985 - (7/14 × 0.985 + 7/14 × 0.863)
+= 0.985 - (0.493 + 0.432)
+= 0.985 - 0.925
+= 0.060
+
+GAIN UNTUK ATRIBUT WINDY
+
+A. Entropy untuk setiap nilai Windy:
+Yes (Total=5):
+
+Play = 3
+Don't Play = 2
+Entropy(Yes) = -(3/5)log₂(3/5) - (2/5)log₂(2/5)
+= 0.971
+
+No (Total=9):
+
+Play = 5
+Don't Play = 4
+Entropy(No) = -(5/9)log₂(5/9) - (4/9)log₂(4/9)
+= 0.991
+
+Gain(Windy) = 0.985 - (5/14 × 0.971 + 9/14 × 0.991)
+= 0.985 - (0.347 + 0.637)
+= 0.985 - 0.984
+= 0.001
+HASIL GAIN UNTUK SEMUA ATRIBUT:
+
+Outlook = 0.246 (tertinggi)
+Temperature = 0.073
+Humidity = 0.060
+Windy = 0.001
+
+Karena Gain(Outlook) memiliki nilai tertinggi, maka Outlook menjadi node akar (root) dari pohon keputusan.
+Pohon keputusan yang terbentuk:
+
+                 Outlook
+                /   |   \
+             /      |      \
+        Sunny    Cloudy    Rainy
+         |         |         |
+    Don't Play    Play    [Next Split]
+
+
+Kesimpulan:
+Atribut dengan Gain tertinggi adalah Outlook, sehingga menjadi root node
+Untuk Sunny mayoritas menghasilkan Don't Play
+Untuk Cloudy selalu menghasilkan Play
+Untuk Rainy perlu split lebih lanjut karena hasilnya masih campuran
